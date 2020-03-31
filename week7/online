@@ -1,0 +1,2 @@
+date | cut -d ' ' -f 2-3,6
+who | wc -l

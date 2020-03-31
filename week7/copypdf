@@ -1,0 +1,3 @@
+mkdir my_pdfs
+cp ~/*.pdf my_pdfs
+echo "Files are $(ls my_pdfs | wc -l)"
