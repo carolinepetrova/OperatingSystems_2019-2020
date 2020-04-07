@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# task1
+
+find / -user `whoami` 2>/dev/null
+
+# task2
+
+read file
+sort $file >> $file
+
+# !!! > не работи заради реда на изпълнение на операторите - тук пренасочването се изпълнява преди sort, а това пренасочване изтрива съдържанието на файла и съответно нямаме какво да сортираме и запишем
+
+# task3
+
+read file num
+head -n $num | tail -n 1
+
+# task4 
+
+read file1 file2
+w > $file1 
+size=$(expr $(wc -c < $file2) \* 2)
+echo $size >> $file1
