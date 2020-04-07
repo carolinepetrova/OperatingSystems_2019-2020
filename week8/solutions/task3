@@ -1,0 +1,19 @@
+#!/bin/bash
+
+read dirname
+# тук зависи как тълкуваме задачата
+# ако искаме общия брой 
+
+echo "Number of files in directory $dirname is $(ls $dirname | wc -l)"
+
+# ако искаме по отделно 
+
+files_count=$(find $dirname -type f -maxdepth 1 2>/dev/null | wc -l)
+directory_count=$(find $dirname -type d -maxdepth 1 2>/dev/null | wc -l)
+
+echo "Number of files in $dirname are $files_count and directories are $directory_count"
+
+# IMPORTANT !!!
+
+# Ако подадете от stdin ~ (специалният символ за началната потребителска директория)
+# той ще бъде интерпретиран като литерал (не се интерпретира със специалното си значение) и ls и find ще хвърлят грешка (няма да видите грешката на find, защото сме пренасочили изхода за грешки) 

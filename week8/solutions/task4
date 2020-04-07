@@ -1,0 +1,7 @@
+#!/bin/bash
+
+read file str
+
+grep $file $str
+
+echo "PID of grep is $?"

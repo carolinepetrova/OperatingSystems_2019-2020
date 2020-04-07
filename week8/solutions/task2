@@ -1,0 +1,10 @@
+#!/bin/bash
+read str
+# ако имаме специфициран брой файлове (примерно 2)
+number=$(expr $(grep $str $1 $2 | wc -l))
+echo "Number of occurance of $str in the files $@ is $number"
+
+# без значение броя на подадените файлове
+
+number2=$(expr $(grep $str $@ | wc -l))
+echo  "Number of occurance of $str in the files $@ is $number"
