@@ -1,0 +1,16 @@
+read dirname
+
+if [ ! -d ~/$dirname ] 
+then 
+mkdir ~/$dirname
+fi
+
+for file in $(ls ~)
+do
+if [ ! -d "$file" -a $(wc -c < "$file") -gt 50 ] 
+then
+cp $file ~/$dirname
+echo $file
+fi
+done
+

@@ -1,0 +1,14 @@
+read f1 f2
+num1=$(file $f1/* | grep "ASCII text" | wc -l)
+num2=$(file $f2/* | grep "ASCII text" | wc -l)
+
+if [ $(expr $num1 + $num2) -ge 20 ]
+then 
+touch sources.txt 
+file $f1/* | grep "ASCII text" | cut -d " " -f1 > sources.txt
+file $f2/* | grep "ASCII text" | cut -d " " -f1 >> sources.txt
+chmod a=r sources.txt
+else 
+echo "some msg  $(expr $num1 + $num2)"
+fi
+
