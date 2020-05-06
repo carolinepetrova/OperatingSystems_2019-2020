@@ -1,15 +1,28 @@
+
 # OperatingSystems_2019-2020
 Notes on basic shell commands, bash scripting and C code for the Operating Systems course 2019-2020
 
-## Огранизационни
-През семестъра се провеждат 3 контролни, като всяко едно е от 4 задачи - 3 задачи за писане на команди/код + 1 теоретична. Всяко контролно носи общо 120т. или общо 360т. като 90 са от теория. 
-За **освобождаване** са нужни 70% т.е. приблизително 250 точки, като трябва да имате и поне 60 точки общо от теоретичните задачи. 
-### Дати на контролни 
-Дата|Материал  |
-|--|--|
-|28.03.2020  |Писане на поредици от Bash команди  |
-|09.05.2020  |Bash скриптове  |
-|06.06.2020  |Писане на C програми за работа с файлове и процеси  |
+## Съдържание
+
+- [Работа с файловата система в Linux](https://github.com/carolinepetrova/OperatingSystems_2019-2020/tree/master/week1)
+ 
+ - [Команди за работа с файлове](https://github.com/carolinepetrova/OperatingSystems_2019-2020/tree/master/week2)
+
+- [Информационни команди. Команди за многопотребителския режим, комуникация. Команди за работа с процеси. Пренасочване на вход/изход. Конвейер между процеси.](https://github.com/carolinepetrova/OperatingSystems_2019-2020/tree/master/week3-4)
+
+-  [Метасимволи и генериране на имена на файлове. Стартиране във фонов дял.](https://github.com/carolinepetrova/OperatingSystems_2019-2020/tree/master/week5)
+
+- [Променливи - дефиниране, инициализиране, присвояване. Системни променливи. Profiles.](https://github.com/carolinepetrova/OperatingSystems_2019-2020/tree/master/week6)
+
+- [Редактор vi](https://github.com/carolinepetrova/OperatingSystems_2019-2020/tree/master/week7)
+
+-  [Командни процедури, командни процедури с позиционни параметри](https://github.com/carolinepetrova/OperatingSystems_2019-2020/tree/master/week8)
+
+- [Командни процедури - Условия и цикли](https://github.com/carolinepetrova/OperatingSystems_2019-2020/tree/master/week9)
+
+- [Системни примитиви за работа с файлове в Linux](https://github.com/carolinepetrova/OperatingSystems_2019-2020/tree/master/week11)
+
+- Системни примитиви за работа с процеси в Linux
 
 
 ## Линукс среда
@@ -25,8 +38,12 @@ Notes on basic shell commands, bash scripting and C code for the Operating Syste
 За да се упражнявате вкъщи може да:
 
  - си инсталирате Linux :)
+ 
  - ако сте на MacOS просто отваряте терминала и сте вие.
+ 
  - Ако сте на Windows има няколко варианта:
- -- Подкарвате си виртуална машина 
- -- От Microsoft Store си сваляте и инсталирате [това](https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6?activetab=pivot:overviewtab), което ви позволява да пишете bash команди под Windows. 
+ 
+	 -- Подкарвате си виртуална машина 
+	 
+	 -- От Microsoft Store си сваляте и инсталирате [това](https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6?activetab=pivot:overviewtab), което ви позволява да пишете bash команди под Windows. 
 
