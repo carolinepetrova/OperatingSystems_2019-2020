@@ -53,16 +53,16 @@ int main() {
 int main() {
 	int pid = fork(); 
 	if(pid == -1) {
-	perror("Couldn't fork!);
-	exit(-1);
+		perror("Couldn't fork!);
+		exit(-1);
 	}
 	else if(pid > 0) {
-	//this is the only parent part
-	printf("Hello from the parent");
+		//this is the only parent part
+		printf("Hello from the parent");
 	}
 	else {
-	//this is the only child part
-	printf("Hello from the child");
+		//this is the only child part
+		printf("Hello from the child");
 	}
 	printf("Called fork()");  
 	return  0; 
@@ -86,14 +86,14 @@ int main() {
 	int a = 1;
 	int pid = fork(); 
 	if(pid == -1) {
-	perror("Couldn't fork!");
-	exit(-1);
+		perror("Couldn't fork!");
+		exit(-1);
 	}
 	else if(pid > 0) {
-	++a;
+		++a;
 	}
 	else {
-	--a;
+		--a;
 	}
 	printf("a=%d\n",a);  
 	return  0; 
@@ -126,15 +126,15 @@ pid_t getppid(void);
 int main() {
 	int pid = fork(); 
 	if(pid == -1) {
-	perror("Couldn't fork!);
-	exit(-1);
+		perror("Couldn't fork!);
+		exit(-1);
 	}
 	else if(pid > 0) {
-	printf("My process ID is %d and my parent is %d\n",getpid(),getppid());
-	printf("My child is %d\n", pid);
+		printf("My process ID is %d and my parent is %d\n",getpid(),getppid());
+		printf("My child is %d\n", pid);
 	}
 	else {
-	printf("My process ID is %d and my parent is %d",getpid(),getppid());
+		printf("My process ID is %d and my parent is %d",getpid(),getppid());
 	}
 	printf("something ...");  
 	return  0; 
@@ -164,7 +164,7 @@ void exit(int return_code);
 
 - Всички отворени вхдни-изходни потоци, притежание на процеса, се затварят, унищожават се временните файлове, създадени от процеса, процесите-деца на текущия процес стават деца на **init** процеса 
 
-## Системни примитиви wait()  и waitpid()
+## Системен примитив wait()
 
 ```C
 #include <sys/types.h>
@@ -177,7 +177,34 @@ pid_t wait(int * status);
 
 - status параметъра ни дава кода на завършване на процесът-дете.
 
-**Важно!** Чрез **wait()** процеса-родител изчаква първото дете, което завършва. Чрез **waitpid()** ние можем да кажем на родителя кой специфичен процес-дете да изчака.
+### Пример
+```C
+#include <sys/types.h>  
+#include <wait.h>
+#include <stdio.h> 
+#include <sys/types.h>  
+#include <unistd.h>  
+int main() {
+	int status = 0; 
+	int pid = fork();
+	if(pid == -1) {
+		perror("Couldn't fork!");
+		exit(-1);
+	}
+	else if(pid > 0) {
+		write(1,"Hello from parent",20);
+		printf("I'll wait now ...");
+		wait(&status);
+		printf("My child has finished with status %d", status);
+	}
+	else {
+		printf("Hello from child");
+	}
+	return 0;
+}
+```
+
+**Допълнителна информация:** Чрез **wait()** процеса-родител изчаква първото дете, което завършва. Чрез **waitpid()** ние можем да кажем на родителя кой специфичен процес-дете да изчака.
 
 ```C
 #include <sys/types.h>
@@ -201,3 +228,49 @@ pid_t waitpid(pid_t pid, int * status, int options);
 
 - функцията връща pid на завършилия процес-дете.
 
+## Смяна на образ на процес
+
+**exec** се използва за промяна на програмата, която един процес изпълнява. При успех **еxec** не връща нищо, иначе връща -1.  Той има няколко варианта:
+```C
+#include <unistd.h>
+int execv(const char *path, char *const argv[]);
+int execvp (const char *file, char *const argv[]);
+```
+- И двете фунции приемат **масив** от параметри на изпълнимия файл.
+
+- **execv** приема пътя до изпълнимия файл
+
+- **еxecvp** приема името на изпълнимия файл и я търси във директорията, която е зададена в PATH системната променлива
+
+```C
+#include <unistd.h>
+int  execl(const char *path, const char *arg, ...)
+int  execlp(const char *file, const char *arg, ...)
+```
+- И двете функции приемат параметри на изпълнимия файл, **изброени един по един**
+
+- **execl** приема пътя до изпълнимия файл
+
+- **еxeclp** приема името на изпълнимия файл и я търси във директорията, която е зададена в PATH системната променлива
+
+### Пример: 
+```C
+#include <unistd.h>  
+  
+int main(void)  {  
+char * args1[]  =  {"/bin/ls",  "-lh",  "/home", NULL};  
+char * args2[]  =  {"ls",  "-lh",  "/home", NULL};  
+  
+execv("/bin/ls", args1);  
+execvp("ls", args2);
+
+execl("/bin/ls", "/bin/ls", "-lh",  "/home", NULL);
+execlp("ls", "ls",  "-lh",  "/home", NULL);
+
+return  0;  
+}
+```
+
+## Задачи
+1. Да се напише програма на С, която получава като параметър команда (без параметри) и при успешното и изпълнение извеежда на стандартния изход името на командата.
+2. Да се напише програма на С, която получава като параметри три команди (без параметри), изпълнява ги последователно, като изчаква края на всяка и извежда на стандартния изход pid на завършилия процес, както и неговия код на завършване.

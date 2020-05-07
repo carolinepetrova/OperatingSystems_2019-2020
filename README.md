@@ -22,9 +22,8 @@ Notes on basic shell commands, bash scripting and C code for the Operating Syste
 
 - [Системни примитиви за работа с файлове в Linux](https://github.com/carolinepetrova/OperatingSystems_2019-2020/tree/master/week11)
 
-- Системни примитиви за работа с процеси в Linux
+- [Системни примитиви за работа с процеси в Linux](https://github.com/carolinepetrova/OperatingSystems_2019-2020/tree/master/week12)
 
-- Сменяне на образи на процеси
 
 
 ## Линукс среда
