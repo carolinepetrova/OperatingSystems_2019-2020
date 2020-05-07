@@ -77,7 +77,7 @@ Hello from the child
 Called fork()
 ```
 
-### Пример: Споделени ресурси
+### Пример
 ```C
 #include  <stdio.h> 
 #include  <sys/types.h>  
