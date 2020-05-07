@@ -8,8 +8,8 @@
         Parent
        /      \
     Child2   Child1
-				\
-				Child3
+		\
+		Child3
 */
 
 int main() {
