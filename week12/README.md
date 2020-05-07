@@ -53,16 +53,16 @@ int main() {
 int main() {
 	int pid = fork(); 
 	if(pid == -1) {
-	perror("Couldn't fork!);
-	exit(-1);
+		perror("Couldn't fork!);
+		exit(-1);
 	}
 	else if(pid > 0) {
-	//this is the only parent part
-	printf("Hello from the parent");
+		//this is the only parent part
+		printf("Hello from the parent");
 	}
 	else {
-	//this is the only child part
-	printf("Hello from the child");
+		//this is the only child part
+		printf("Hello from the child");
 	}
 	printf("Called fork()");  
 	return  0; 
@@ -86,14 +86,14 @@ int main() {
 	int a = 1;
 	int pid = fork(); 
 	if(pid == -1) {
-	perror("Couldn't fork!");
-	exit(-1);
+		perror("Couldn't fork!");
+		exit(-1);
 	}
 	else if(pid > 0) {
-	++a;
+		++a;
 	}
 	else {
-	--a;
+		--a;
 	}
 	printf("a=%d\n",a);  
 	return  0; 
@@ -126,15 +126,15 @@ pid_t getppid(void);
 int main() {
 	int pid = fork(); 
 	if(pid == -1) {
-	perror("Couldn't fork!);
-	exit(-1);
+		perror("Couldn't fork!);
+		exit(-1);
 	}
 	else if(pid > 0) {
-	printf("My process ID is %d and my parent is %d\n",getpid(),getppid());
-	printf("My child is %d\n", pid);
+		printf("My process ID is %d and my parent is %d\n",getpid(),getppid());
+		printf("My child is %d\n", pid);
 	}
 	else {
-	printf("My process ID is %d and my parent is %d",getpid(),getppid());
+		printf("My process ID is %d and my parent is %d",getpid(),getppid());
 	}
 	printf("something ...");  
 	return  0; 
@@ -177,6 +177,33 @@ pid_t wait(int * status);
 
 - status параметъра ни дава кода на завършване на процесът-дете.
 
+### Пример
+```C
+#include <sys/types.h>  
+#include <wait.h>
+#include <stdio.h> 
+#include <sys/types.h>  
+#include <unistd.h>  
+int main() {
+	int status = 0; 
+	int pid = fork();
+	if(pid == -1) {
+		perror("Couldn't fork!");
+		exit(-1);
+	}
+	else if(pid > 0) {
+		write(1,"Hello from parent",20);
+		printf("I'll wait now ...");
+		wait(&status);
+		printf("My child has finished with status %d", status);
+	}
+	else {
+		printf("Hello from child");
+	}
+	return 0;
+}
+```
+
 **Важно!** Чрез **wait()** процеса-родител изчаква първото дете, което завършва. Чрез **waitpid()** ние можем да кажем на родителя кой специфичен процес-дете да изчака.
 
 ```C
@@ -200,4 +227,5 @@ pid_t waitpid(pid_t pid, int * status, int options);
 - чрез **options** може да се предотврати блокирането на родителя. При значение WHOHANG процесът-родител не се блокира, ако синът не е завършил и функцията връща 0. 
 
 - функцията връща pid на завършилия процес-дете.
+
 
