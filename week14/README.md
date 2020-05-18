@@ -11,7 +11,7 @@ while true
 	do echo $*
 	for j 
 		do 
-		if test $# ­lt $br
+		if test $# -lt $br
 		then 
 			br=` expr $br / 2`
 			echo $br $j >> file
