@@ -1,0 +1,13 @@
+lastLine=`tail -n 1 $2`
+findIndex=`expr index $lastLine 1`
+
+substrName=`expr substr $lastLine 1 $findIndex`
+
+counter=`find ~/.. -name $substrName 2>/dev/null | wc -l`
+
+if [ $counter -eq 0 ]
+then 
+echo "Didnt find files" | write $1
+else
+echo $numOfFiles
+fi

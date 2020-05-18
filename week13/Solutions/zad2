@@ -1,0 +1,17 @@
+if [ ! -d ~/$1 ] 
+then
+mkdir ~/$1
+fi
+
+counter=0
+
+for f in *
+do
+if [ -f "$f" -a -r "$f" -a -w "$f" ]
+then 
+cp $f ~/$1
+else 
+counter=`expr $counter + 1`
+fi
+done
+echo "Number files not copied $counter"
