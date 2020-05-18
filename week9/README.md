@@ -74,8 +74,8 @@ $ test string operator string
 
 **Пример:**
 ```
-$ [value1 -option value2]
-$ [string operator string]
+$ [ value1 -option value2 ]
+$ [ string operator string ]
 ```
 
 ## Условен оператор if
