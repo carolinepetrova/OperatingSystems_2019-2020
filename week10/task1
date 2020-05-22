@@ -1,0 +1,25 @@
+if [ -n "$(who -T|grep $1|grep +)" ]
+then
+echo "Files are $(expr $# - 2)"| write $1
+
+shift 2
+
+if [ ! -d ~/c_sources ]
+then
+mkdir ~/c_sources
+fi
+
+counter=0
+
+for i in $@
+do
+if [ $i == *".c" -a -r $i -o -w $i ]
+then
+mv $i ~/c_sources
+else 
+counter=$(expr $counter + 1)
+fi
+done
+echo "Files left $counter"
+fi
+
