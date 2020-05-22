@@ -1,3 +1,5 @@
+#!/bin/bash
+
 if [ -n "$(who -T|grep $1|grep +)" ]
 then
 echo "Files are $(expr $# - 2)"| write $1
