@@ -1,0 +1,21 @@
+if [ -z $3 ]
+then 
+set $1 $2 "`cat ff`"
+fi
+
+counter=0
+
+for file in ./*
+do 
+if [ $file == *.c ] 
+then 
+mv $file $1
+elif [ $file == *.out ] 
+then 
+mv $file $2
+else
+counter=`expr $counter + 1`
+fi
+done
+
+echo "not moved $counter"

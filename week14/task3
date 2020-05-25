@@ -1,0 +1,12 @@
+#!/bin/bash
+
+read str
+
+for user
+do
+if  who -u | grep $user | grep "."
+then 
+echo $str | write $user
+fi
+done
+

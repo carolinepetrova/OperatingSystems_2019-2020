@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# finding the size of the files in the directory without browsing the subdirectories
+
+counter=0
+
+allfiles=$(du $1)
+
+for line in $allfiles 
+# the output from du is parsed by a whitespace and passed to "line"
+do
+if [ $line -eq $line 2>/dev/null ] 
+# this way we can separate the integers (operators do only integer comparisons)
+then
+counter=$(expr $counter + $line)
+fi
+done
+
+if who -u | grep $2 | grep "."
+then 
+echo $counter | write $2
+fi
+

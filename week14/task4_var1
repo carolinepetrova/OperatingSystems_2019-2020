@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# finding the size of the files in the directory without browsing the subdirectories
+
+counter=0
+
+for file in $1/*
+do
+if [ -f $file ] 
+then 
+counter=$(expr $counter + $(wc -c < $file))
+fi
+done
+
+if who -u | grep $2 | grep "."
+then 
+echo $counter | write $2
+fi
