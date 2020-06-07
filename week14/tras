@@ -1,3 +1,4 @@
+#!/bin/bash
 br=1
 br=`expr $br \* $2` # br=1
 a=$3 # a =3
@@ -18,14 +19,15 @@ while true
 	done
 	break
 done
-read a1 a2 #c d 
-while cat file | grep $a1
+read a1 a2 # $a1=c $a2=d 
+while cat file | grep $a1 # output of the command will be printed to stdout!
 	do echo $a $a2 
 		wc -l file 
 		tail -5c file # tail -c 5 file 
 		exit 
-		echo FIN
+		echo FIN # this will not be printed because of exit
 done
+# this below will not be printed because of exit
 echo $a $a1
 wc -c file
 tail -2l file
