@@ -11,7 +11,7 @@ if ((fd1 = open(argv[1], O_WRONLY|O_CREAT|O_TRUNC, 0755)) == -1) {
 }
 while(read(0, buff, 1) > 0) {
 	write(fd1, buff, 1);
-if (c[0] == '\t') {
+if (buff[0] == '\t') {
 	write(2, “>>>”, 3);
 } 
 else {
