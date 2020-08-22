@@ -24,6 +24,7 @@ int main(int argc, char * argv[]) {
     char buff[1];
     int byteCount = 0;
     while(read(fd1,buff,1)>0) {
+        write(1,buff,1);
         if(byteCount <3) {
             ++byteCount;
             write(fd2, buff, 1);
