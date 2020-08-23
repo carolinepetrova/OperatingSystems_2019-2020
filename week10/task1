@@ -15,7 +15,7 @@ counter=0
 
 for i in $@
 do
-if [ $i == *".c" -a -r $i -o -w $i ]
+if [[ $i == *".c" && -r $i || -w $i ]] 
 then
 mv $i ~/c_sources
 else 
