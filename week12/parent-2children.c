@@ -7,7 +7,7 @@
 
         Parent
        /     \
-	Child1	Child2
+   Child1   Child2
 				
 */
 
